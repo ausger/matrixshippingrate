@@ -1,0 +1,2 @@
+UPDATE `shipping_matrixrate` SET price = '20.0000' where depart_country_id = 'DE' AND dest_country_id = 'CN,HK' AND condition_from_value = '0.0000' AND condition_to_value = '1.0000';
+UPDATE `shipping_matrixrate` SET price = '22.0000' where depart_country_id = 'DE' AND dest_country_id = 'CN,HK' AND condition_from_value = '1.0100' AND condition_to_value = '2.0000';
