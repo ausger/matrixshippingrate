@@ -37,21 +37,7 @@ class Webshopapps_Matrixrate_Model_Mysql4_Carrier_Matrixrate extends Mage_Core_M
     {
         $read = $this->_getReadAdapter();
         $table = Mage::getSingleton('core/resource')->getTableName('matrixrate_shipping/matrixrate');
-
-        $destRegionQuery = '';
-        $destregionid = $request->getDestRegionId();
-
-        $dirCountryRegionTable = Mage::getSingleton('core/resource')->getTableName('directory/country_region');
-        $select = $read->select()->from($dirCountryRegionTable);
-        $select->where("code = 'NSW'");
-        $row = $read->fetchAll($select);
-
-        if(($row[0]['region_id'] == $destregionid) && ('AU' == $request->getDepartCountryId())) {
-            $destRegionQuery = $read->quoteInto(" AND dest_region_id=? AND dest_city='' AND dest_zip='' ", $destregionid);
-        } else {
-            $destRegionQuery = " AND dest_region_id='0' AND dest_city='' AND dest_zip='' ";
-        }
-        unset($row);
+        $destRegionQuery = " AND dest_region_id='0' AND dest_city='' AND dest_zip='' ";
 		for ($j=0;$j<2;$j++)
 		{
 			$select = $read->select()->from($table);
@@ -113,10 +99,7 @@ class Webshopapps_Matrixrate_Model_Mysql4_Carrier_Matrixrate extends Mage_Core_M
 				break;
 			}
 		}
-        //if depart country is Germany, conver it to Australia Dollar
-        if($request->getDepartCountryId() == "DE") {
-            $newdata[0]['price'] = $newdata[0]['price'] * 1.39;
-        }
+        
 		return $newdata;
 
     }
