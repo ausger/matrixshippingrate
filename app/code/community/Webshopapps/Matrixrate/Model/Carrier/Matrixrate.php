@@ -37,6 +37,32 @@ class Webshopapps_Matrixrate_Model_Carrier_Matrixrate
 
     protected $_conditionNames = array();
 
+    protected $expresstable = array(
+        1.00  => 24.96,
+        2.00  => 28.44,
+        3.00  => 31.92,
+        4.00  => 35.40,
+        5.00  => 38.88,
+        6.00  => 42.36,
+        7.00  => 45.84,
+        8.00  => 49.32,
+        9.00  => 52.80,
+        10.0  => 56.28,
+        11.0  => 59.76,
+        12.0  => 63.24,
+        13.0  => 66.72,
+        14.0  => 70.20,
+        15.0  => 73.68,
+        16.0  => 77.16,
+        17.0  => 80.64,
+        18.0  => 84.12,
+        19.0  => 87.60,
+        20.0  => 91.08,
+        21.0  => 94.56,
+        22.0  => 98.04,
+        23.0  => 101.52,
+    );
+
     public function __construct()
     {
         parent::__construct();
@@ -92,9 +118,9 @@ class Webshopapps_Matrixrate_Model_Carrier_Matrixrate
         }
 
         //
-        if(count($countriesOfManufacture) == 0 || count($countriesOfManufacture) >2) {
+        if(count($countriesOfManufacture) == 0) {
             //error. Departure Country can be only Australia and Germany.
-            Mage::log("Matrix Rate: Countries of Manufacture are zero or great than 2. ", Zend_Log::ERR, "exception.log");
+            Mage::log("Matrix Rate: Countries of Manufacture are NOT set. ", Zend_Log::ERR, "exception.log");
             return false;
         } else {
             // count($countriesOfManufacture) must be 2.
@@ -173,6 +199,7 @@ class Webshopapps_Matrixrate_Model_Carrier_Matrixrate
             $method->setMethod('matrixrate_'.$pk);
 
             $method->setMethodTitle(Mage::helper('matrixrate')->__($deliverytype));
+            $method->setMethodTitle('DHL Standard');
 
             $shippingPrice = $this->getFinalPriceWithHandlingFee($rateprice);
             $method->setCost($ratecost);
@@ -220,6 +247,12 @@ class Webshopapps_Matrixrate_Model_Carrier_Matrixrate
         //$result = Mage::getModel('shipping/rate_result');
      	//$ratearray = $this->getRate($request);
 
+        Mage::log('DestCountryId is ' . $request->getDestCountryId(), null, 'debug_shipping.log', null);
+        if ($request->getDestCountryId() == 'CN'){
+
+            $result->append($this->_getExpressShippingRate($request->getPackageWeight()));
+        }
+
      	$freeShipping=false;
      	
      	if (is_numeric($this->getConfigData('free_shipping_threshold')) && 
@@ -262,7 +295,6 @@ class Webshopapps_Matrixrate_Model_Carrier_Matrixrate
        //     $result->append($method);
 	   //	}
 	   //}
-
        return $result;
     }
 
@@ -276,11 +308,34 @@ class Webshopapps_Matrixrate_Model_Carrier_Matrixrate
      *
      * @return array
      */
-    public function getAllowedMethods()
-    {
-        return array('matrixrate'=>$this->getConfigData('name'));
+    //public function getAllowedMethods()
+    //{
+    //    return array('matrixrate'=>$this->getConfigData('name'));
+    //}
+    public function getAllowedMethods() {
+        Mage::log('getAllowedMethods is called', null, 'debug_shipping.log', null);
+        return array(
+            'standard' => 'DHL Standard',
+            'express' => 'Express 阳光清关'
+        );
     }
-    
+
+    protected function _getExpressShippingRate($packageWeight) {
+        $rate = Mage::getModel('shipping/rate_result_method');
+        /* @var $rate Mage_Shipping_Model_Rate_Result_Method */
+        $rate->setCarrier($this->_code);
+        $rate->setCarrierTitle($this->getConfigData('title'));
+        $rate->setMethod('express');
+        $rate->setMethodTitle('阳光清关');
+
+        //find out the price according to the packageWeight
+        $ceil_weight = ceil($packageWeight);
+        $freightPrice = $this->expresstable[$ceil_weight];
+        $rate->setPrice($freightPrice);
+        $rate->setCost(0);
+        Mage::log('_getExpressShippingRate is ' . $freightPrice, null, 'debug_shipping.log', null);
+        return $rate;
+    }
 
     public function getCode($type, $code='')
     {

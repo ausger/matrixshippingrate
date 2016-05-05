@@ -1,38 +1,73 @@
 INSERT INTO `shipping_matrixrate` (`pk`,`website_id`,`depart_country_id`,`dest_country_id`,`dest_region_id`,`dest_city`,`dest_zip`,
 `dest_zip_to`,`condition_name`,`condition_from_value`,`condition_to_value`,`price`,`cost`,`delivery_type`)
-VALUES (NULL,'1','DE','CN,HK','0','','','','package_weight','0.0000','1.0000','7.0000','0.0000','');
+VALUES (NULL,'1','DE','CN,HK','0','','','','package_weight','0.0000','1.0000','19.5800','0.0000','');
+
 INSERT INTO `shipping_matrixrate` (`pk`,`website_id`,`depart_country_id`,`dest_country_id`,`dest_region_id`,`dest_city`,`dest_zip`,
-`dest_zip_to`,`condition_name`,`condition_from_value`,`condition_to_value`,`price`,`cost`,`delivery_type`) VALUES(NULL,'1','DE','CN,HK','0','','','','package_weight','1.0100','2.0000','15.9000','0.0000','');
+`dest_zip_to`,`condition_name`,`condition_from_value`,`condition_to_value`,`price`,`cost`,`delivery_type`) VALUES(NULL,'1','DE','CN,HK','0','','','','package_weight','1.0100','2.0000','23.4000','0.0000','');
+
 INSERT INTO `shipping_matrixrate` (`pk`,`website_id`,`depart_country_id`,`dest_country_id`,`dest_region_id`,`dest_city`,`dest_zip`,
-`dest_zip_to`,`condition_name`,`condition_from_value`,`condition_to_value`,`price`,`cost`,`delivery_type`) VALUES(NULL,'1','DE','CN,HK','0','','','','package_weight','2.0100','3.0000','32.0000','0.0000','');
+`dest_zip_to`,`condition_name`,`condition_from_value`,`condition_to_value`,`price`,`cost`,`delivery_type`) VALUES(NULL,'1','DE','CN,HK','0','','','','package_weight','2.0100','3.0000','26.5000','0.0000','');
+
 INSERT INTO `shipping_matrixrate` (`pk`,`website_id`,`depart_country_id`,`dest_country_id`,`dest_region_id`,`dest_city`,`dest_zip`,
-`dest_zip_to`,`condition_name`,`condition_from_value`,`condition_to_value`,`price`,`cost`,`delivery_type`) VALUES(NULL,'1','DE','CN,HK','0','','','','package_weight','3.0100','4.0000','34.0000','0.0000','');
+`dest_zip_to`,`condition_name`,`condition_from_value`,`condition_to_value`,`price`,`cost`,`delivery_type`) VALUES(NULL,'1','DE','CN,HK','0','','','','package_weight','3.0100','4.0000','30.0000','0.0000','');
+
 INSERT INTO `shipping_matrixrate` (`pk`,`website_id`,`depart_country_id`,`dest_country_id`,`dest_region_id`,`dest_city`,`dest_zip`,
-`dest_zip_to`,`condition_name`,`condition_from_value`,`condition_to_value`,`price`,`cost`,`delivery_type`) VALUES(NULL,'1','DE','CN,HK','0','','','','package_weight','4.0100','5.0000','36.0000','0.0000','');
+`dest_zip_to`,`condition_name`,`condition_from_value`,`condition_to_value`,`price`,`cost`,`delivery_type`) VALUES(NULL,'1','DE','CN,HK','0','','','','package_weight','4.0100','5.0000','33.0000','0.0000','');
+
 INSERT INTO `shipping_matrixrate` (`pk`,`website_id`,`depart_country_id`,`dest_country_id`,`dest_region_id`,`dest_city`,`dest_zip`,
-`dest_zip_to`,`condition_name`,`condition_from_value`,`condition_to_value`,`price`,`cost`,`delivery_type`) VALUES(NULL,'1','DE','CN,HK','0','','','','package_weight','5.0100','6.0000','38.0000','0.0000','');
+`dest_zip_to`,`condition_name`,`condition_from_value`,`condition_to_value`,`price`,`cost`,`delivery_type`) VALUES(NULL,'1','DE','CN,HK','0','','','','package_weight','5.0100','6.0000','36.3000','0.0000','');
+
 INSERT INTO `shipping_matrixrate` (`pk`,`website_id`,`depart_country_id`,`dest_country_id`,`dest_region_id`,`dest_city`,`dest_zip`,
-`dest_zip_to`,`condition_name`,`condition_from_value`,`condition_to_value`,`price`,`cost`,`delivery_type`) VALUES(NULL,'1','DE','CN,HK','0','','','','package_weight','6.0100','7.0000','40.0000','0.0000','');
+`dest_zip_to`,`condition_name`,`condition_from_value`,`condition_to_value`,`price`,`cost`,`delivery_type`) VALUES(NULL,'1','DE','CN,HK','0','','','','package_weight','6.0100','7.0000','39.8000','0.0000','');
+
 INSERT INTO `shipping_matrixrate` (`pk`,`website_id`,`depart_country_id`,`dest_country_id`,`dest_region_id`,`dest_city`,`dest_zip`,
-`dest_zip_to`,`condition_name`,`condition_from_value`,`condition_to_value`,`price`,`cost`,`delivery_type`) VALUES(NULL,'1','DE','CN,HK','0','','','','package_weight','7.0100','8.0000','43.0000','0.0000','');
+`dest_zip_to`,`condition_name`,`condition_from_value`,`condition_to_value`,`price`,`cost`,`delivery_type`) VALUES(NULL,'1','DE','CN,HK','0','','','','package_weight','7.0100','8.0000','43.3000','0.0000','');
+
 INSERT INTO `shipping_matrixrate` (`pk`,`website_id`,`depart_country_id`,`dest_country_id`,`dest_region_id`,`dest_city`,`dest_zip`,
-`dest_zip_to`,`condition_name`,`condition_from_value`,`condition_to_value`,`price`,`cost`,`delivery_type`) VALUES(NULL,'1','DE','CN,HK','0','','','','package_weight','8.0100','9.0000','45.0000','0.0000','');
+`dest_zip_to`,`condition_name`,`condition_from_value`,`condition_to_value`,`price`,`cost`,`delivery_type`) VALUES(NULL,'1','DE','CN,HK','0','','','','package_weight','8.0100','9.0000','46.8000','0.0000','');
+
 INSERT INTO `shipping_matrixrate` (`pk`,`website_id`,`depart_country_id`,`dest_country_id`,`dest_region_id`,`dest_city`,`dest_zip`,
-`dest_zip_to`,`condition_name`,`condition_from_value`,`condition_to_value`,`price`,`cost`,`delivery_type`) VALUES(NULL,'1','DE','CN,HK','0','','','','package_weight','9.0100','10.0000','47.0000','0.0000','');
+`dest_zip_to`,`condition_name`,`condition_from_value`,`condition_to_value`,`price`,`cost`,`delivery_type`) VALUES(NULL,'1','DE','CN,HK','0','','','','package_weight','9.0100','10.0000','50.3000','0.0000','');
+
 INSERT INTO `shipping_matrixrate` (`pk`,`website_id`,`depart_country_id`,`dest_country_id`,`dest_region_id`,`dest_city`,`dest_zip`,
-`dest_zip_to`,`condition_name`,`condition_from_value`,`condition_to_value`,`price`,`cost`,`delivery_type`) VALUES(NULL,'1','DE','CN,HK','0','','','','package_weight','10.0100','12.0000','51.0000','0.0000','');
+`dest_zip_to`,`condition_name`,`condition_from_value`,`condition_to_value`,`price`,`cost`,`delivery_type`) VALUES(NULL,'1','DE','CN,HK','0','','','','package_weight','10.0100','11.0000','53.7000','0.0000','');
+
 INSERT INTO `shipping_matrixrate` (`pk`,`website_id`,`depart_country_id`,`dest_country_id`,`dest_region_id`,`dest_city`,`dest_zip`,
-`dest_zip_to`,`condition_name`,`condition_from_value`,`condition_to_value`,`price`,`cost`,`delivery_type`) VALUES(NULL,'1','DE','CN,HK','0','','','','package_weight','12.0100','15.0000','57.0000','0.0000','');
+`dest_zip_to`,`condition_name`,`condition_from_value`,`condition_to_value`,`price`,`cost`,`delivery_type`) VALUES(NULL,'1','DE','CN,HK','0','','','','package_weight','11.0100','12.0000','57.2000','0.0000','');
+
 INSERT INTO `shipping_matrixrate` (`pk`,`website_id`,`depart_country_id`,`dest_country_id`,`dest_region_id`,`dest_city`,`dest_zip`,
-`dest_zip_to`,`condition_name`,`condition_from_value`,`condition_to_value`,`price`,`cost`,`delivery_type`) VALUES(NULL,'1','DE','CN,HK','0','','','','package_weight','15.0100','18.0000','63.0000','0.0000','');
+`dest_zip_to`,`condition_name`,`condition_from_value`,`condition_to_value`,`price`,`cost`,`delivery_type`) VALUES(NULL,'1','DE','CN,HK','0','','','','package_weight','12.0100','13.0000','60.7000','0.0000','');
+
 INSERT INTO `shipping_matrixrate` (`pk`,`website_id`,`depart_country_id`,`dest_country_id`,`dest_region_id`,`dest_city`,`dest_zip`,
-`dest_zip_to`,`condition_name`,`condition_from_value`,`condition_to_value`,`price`,`cost`,`delivery_type`) VALUES(NULL,'1','DE','CN,HK','0','','','','package_weight','18.0100','20.0000','67.0000','0.0000','');
+`dest_zip_to`,`condition_name`,`condition_from_value`,`condition_to_value`,`price`,`cost`,`delivery_type`) VALUES(NULL,'1','DE','CN,HK','0','','','','package_weight','13.0100','14.0000','64.0000','0.0000','');
+
 INSERT INTO `shipping_matrixrate` (`pk`,`website_id`,`depart_country_id`,`dest_country_id`,`dest_region_id`,`dest_city`,`dest_zip`,
-`dest_zip_to`,`condition_name`,`condition_from_value`,`condition_to_value`,`price`,`cost`,`delivery_type`) VALUES(NULL,'1','DE','CN,HK','0','','','','package_weight','20.0100','25.0000','77.0000','0.0000','');
+`dest_zip_to`,`condition_name`,`condition_from_value`,`condition_to_value`,`price`,`cost`,`delivery_type`) VALUES(NULL,'1','DE','CN,HK','0','','','','package_weight','14.0100','15.0000','67.5000','0.0000','');
+
 INSERT INTO `shipping_matrixrate` (`pk`,`website_id`,`depart_country_id`,`dest_country_id`,`dest_region_id`,`dest_city`,`dest_zip`,
-`dest_zip_to`,`condition_name`,`condition_from_value`,`condition_to_value`,`price`,`cost`,`delivery_type`) VALUES(NULL,'1','DE','CN,HK','0','','','','package_weight','25.0100','28.0000','83.0000','0.0000','');
+`dest_zip_to`,`condition_name`,`condition_from_value`,`condition_to_value`,`price`,`cost`,`delivery_type`) VALUES(NULL,'1','DE','CN,HK','0','','','','package_weight','15.0100','16.0000','71.1000','0.0000','');
+
 INSERT INTO `shipping_matrixrate` (`pk`,`website_id`,`depart_country_id`,`dest_country_id`,`dest_region_id`,`dest_city`,`dest_zip`,
-`dest_zip_to`,`condition_name`,`condition_from_value`,`condition_to_value`,`price`,`cost`,`delivery_type`) VALUES(NULL,'1','DE','CN,HK','0','','','','package_weight','28.0100','30.0000','87.0000','0.0000','');
+`dest_zip_to`,`condition_name`,`condition_from_value`,`condition_to_value`,`price`,`cost`,`delivery_type`) VALUES(NULL,'1','DE','CN,HK','0','','','','package_weight','16.0100','17.0000','74.6600','0.0000','');
+
+INSERT INTO `shipping_matrixrate` (`pk`,`website_id`,`depart_country_id`,`dest_country_id`,`dest_region_id`,`dest_city`,`dest_zip`,
+`dest_zip_to`,`condition_name`,`condition_from_value`,`condition_to_value`,`price`,`cost`,`delivery_type`) VALUES(NULL,'1','DE','CN,HK','0','','','','package_weight','17.0100','18.0000','76.1000','0.0000','');
+
+INSERT INTO `shipping_matrixrate` (`pk`,`website_id`,`depart_country_id`,`dest_country_id`,`dest_region_id`,`dest_city`,`dest_zip`,
+`dest_zip_to`,`condition_name`,`condition_from_value`,`condition_to_value`,`price`,`cost`,`delivery_type`) VALUES(NULL,'1','DE','CN,HK','0','','','','package_weight','18.0100','19.0000','80.6000','0.0000','');
+
+INSERT INTO `shipping_matrixrate` (`pk`,`website_id`,`depart_country_id`,`dest_country_id`,`dest_region_id`,`dest_city`,`dest_zip`,
+`dest_zip_to`,`condition_name`,`condition_from_value`,`condition_to_value`,`price`,`cost`,`delivery_type`) VALUES(NULL,'1','DE','CN,HK','0','','','','package_weight','19.0100','20.0000','83.1000','0.0000','');
+
+INSERT INTO `shipping_matrixrate` (`pk`,`website_id`,`depart_country_id`,`dest_country_id`,`dest_region_id`,`dest_city`,`dest_zip`,
+`dest_zip_to`,`condition_name`,`condition_from_value`,`condition_to_value`,`price`,`cost`,`delivery_type`) VALUES(NULL,'1','DE','CN,HK','0','','','','package_weight','20.0100','21.0000','85.5000','0.0000','');
+
+INSERT INTO `shipping_matrixrate` (`pk`,`website_id`,`depart_country_id`,`dest_country_id`,`dest_region_id`,`dest_city`,`dest_zip`,
+`dest_zip_to`,`condition_name`,`condition_from_value`,`condition_to_value`,`price`,`cost`,`delivery_type`) VALUES(NULL,'1','DE','CN,HK','0','','','','package_weight','21.0100','22.0000','90.0000','0.0000','');
+
+INSERT INTO `shipping_matrixrate` (`pk`,`website_id`,`depart_country_id`,`dest_country_id`,`dest_region_id`,`dest_city`,`dest_zip`,
+`dest_zip_to`,`condition_name`,`condition_from_value`,`condition_to_value`,`price`,`cost`,`delivery_type`) VALUES(NULL,'1','DE','CN,HK','0','','','','package_weight','22.0100','23.0000','90.5000','0.0000','');
+
 INSERT INTO `shipping_matrixrate` (`pk`,`website_id`,`depart_country_id`,`dest_country_id`,`dest_region_id`,`dest_city`,`dest_zip`,
 `dest_zip_to`,`condition_name`,`condition_from_value`,`condition_to_value`,`price`,`cost`,`delivery_type`) VALUES(NULL,'1','DE','MO,TW','0','','','','package_weight','0.0000','1.0000','7.0000','0.0000','');
 INSERT INTO `shipping_matrixrate` (`pk`,`website_id`,`depart_country_id`,`dest_country_id`,`dest_region_id`,`dest_city`,`dest_zip`,
