@@ -37,6 +37,17 @@ class Webshopapps_Matrixrate_Model_Carrier_Matrixrate
 
     protected $_conditionNames = array();
 
+    protected $manufactory_country_2_code = array(
+        'Australia' => 'AU',
+        'Austria' => 'AT',
+        'China' => 'CN',
+        'Germany' => 'DE',
+        'Japan' => 'JP',
+        'South Korea' => 'KR',
+        'United Kingdom' => 'GB',
+        'United States' => 'US'
+    );
+
     protected $expresstable = array(
         1.00  => 24.96,
         2.00  => 28.44,
@@ -113,7 +124,8 @@ class Webshopapps_Matrixrate_Model_Carrier_Matrixrate
             foreach ($productCollection as $product) {
                 //$countriesOfManufacture[$product->getId()] = $product->getCountryOfManufacture();
                 //group items according to its country of manufacture.
-                $countriesOfManufacture[$product->getCountryOfManufacture()] []= $item;
+                $country_code = $this->manufactory_country_2_code[$product->getCountryOfManufacture()];
+                $countriesOfManufacture[$country_code][]= $item;
             }
         }
 
