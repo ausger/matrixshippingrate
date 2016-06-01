@@ -51,11 +51,7 @@ class Webshopapps_Matrixrate_Model_Mysql4_Carrier_Matrixrate extends Mage_Core_M
                     break;
                 case 1:
                     //if reach here, then the country is not supported.
-                    $select->where(
-                        $read->quoteInto("  depart_country_id=? ", $request->getDepartCountryId()).
-                        "  AND dest_country_id='HM' "
-                    );
-                    break;
+                    return array();
 			}
 
 

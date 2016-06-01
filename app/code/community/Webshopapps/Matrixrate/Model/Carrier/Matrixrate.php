@@ -37,17 +37,6 @@ class Webshopapps_Matrixrate_Model_Carrier_Matrixrate
 
     protected $_conditionNames = array();
 
-    protected $manufactory_country_2_code = array(
-        'Australia' => 'AU',
-        'Austria' => 'AT',
-        'China' => 'CN',
-        'Germany' => 'DE',
-        'Japan' => 'JP',
-        'South Korea' => 'KR',
-        'United Kingdom' => 'GB',
-        'United States' => 'US'
-    );
-
     protected $expresstable = array(
         1.00  => 24.96,
         2.00  => 28.44,
@@ -119,13 +108,17 @@ class Webshopapps_Matrixrate_Model_Carrier_Matrixrate
             $productCollection = Mage::getResourceModel('catalog/product_collection')
                 ->addStoreFilter($request->getStoreId())
                 ->addFieldToFilter('entity_id', array('in' => $item->getProductId()))
-                ->addAttributeToSelect('country_of_manufacture');
+                ->addAttributeToSelect('country_of_manufacture')
+                ->addAttributeToSelect('free_shipping');
 
             foreach ($productCollection as $product) {
                 //$countriesOfManufacture[$product->getId()] = $product->getCountryOfManufacture();
                 //group items according to its country of manufacture.
-                $country_code = $this->manufactory_country_2_code[$product->getCountryOfManufacture()];
-                $countriesOfManufacture[$country_code][]= $item;
+                $country_code = $product->getData('country_of_manufacture');
+                if ($country_code) {
+                    $item->setData('free_shipping', $product->getData('free_shipping'));
+                    $countriesOfManufacture[$country_code][]= $item;
+                }
             }
         }
 
@@ -155,7 +148,7 @@ class Webshopapps_Matrixrate_Model_Carrier_Matrixrate
                 $rowWeight = 0;
                 $request->setDepartCountryId($departCountry);
                 foreach ($countryOfManufacture as $item) {
-                    if ($item->getProduct()->isVirtual() || $item->getParentItem()) {
+                    if ($item->getProduct()->isVirtual() || $item->getParentItem()|| $item->getData('free_shipping')) {
                         continue;
                     }
 
@@ -193,9 +186,14 @@ class Webshopapps_Matrixrate_Model_Carrier_Matrixrate
                 $result = Mage::getModel('shipping/rate_result');
                 $ratearray = $this->getRate($request);
 
+                if(!$ratearray) {
+                    //error. Departure Country can be only Australia and Germany.
+                    Mage::log("Matrix Rate: No rate available. ", Zend_Log::ERR, "exception.log");
+                    return false;
+                }
                 foreach ($ratearray as $rate)
                 {
-                    if (!empty($rate) && $rate['price'] >= 0) {
+                    if (!empty($rate) && $rate['price'] > 0) {
                         $pk = $pk.$rate['pk'];
                         $deliverytype = $rate['delivery_type'];
                         $rateprice += $rate['price'];
@@ -203,23 +201,26 @@ class Webshopapps_Matrixrate_Model_Carrier_Matrixrate
                     }
                 }
             }
-            $method = Mage::getModel('shipping/rate_result_method');
+            //shipping method would be only displayed if rateprice > 0 otherwise it is either free shipping or error which overall weight could not be matched.
+            if($rateprice > 0) {
+                $method = Mage::getModel('shipping/rate_result_method');
 
-            $method->setCarrier('matrixrate');
-            $method->setCarrierTitle($this->getConfigData('title'));
+                $method->setCarrier('matrixrate');
+                $method->setCarrierTitle($this->getConfigData('title'));
 
-            $method->setMethod('matrixrate_'.$pk);
+                $method->setMethod('matrixrate_'.$pk);
 
-            $method->setMethodTitle(Mage::helper('matrixrate')->__($deliverytype));
-            $method->setMethodTitle('DHL Standard');
+                $method->setMethodTitle(Mage::helper('matrixrate')->__($deliverytype));
+                $method->setMethodTitle('DHL Standard');
 
-            $shippingPrice = $this->getFinalPriceWithHandlingFee($rateprice);
-            $method->setCost($ratecost);
-            $method->setDeliveryType($deliverytype);
+                $shippingPrice = $this->getFinalPriceWithHandlingFee($rateprice);
+                $method->setCost($ratecost);
+                $method->setDeliveryType($deliverytype);
 
-            $method->setPrice($shippingPrice);
+                $method->setPrice($shippingPrice);
 
-            $result->append($method);
+                $result->append($method);
+            }
 
         }
 
@@ -259,12 +260,6 @@ class Webshopapps_Matrixrate_Model_Carrier_Matrixrate
         //$result = Mage::getModel('shipping/rate_result');
      	//$ratearray = $this->getRate($request);
 
-        Mage::log('DestCountryId is ' . $request->getDestCountryId(), null, 'debug_shipping.log', null);
-        if ($request->getDestCountryId() == 'CN'){
-
-            $result->append($this->_getExpressShippingRate($request->getPackageWeight()));
-        }
-
      	$freeShipping=false;
      	
      	if (is_numeric($this->getConfigData('free_shipping_threshold')) && 
@@ -292,6 +287,11 @@ class Webshopapps_Matrixrate_Model_Carrier_Matrixrate
 				return $result;
 			}
 		}
+
+        if ($request->getDestCountryId() == 'CN'){
+
+            $result->append($this->_getExpressShippingRate($request->getPackageWeight()));
+        }
      	
 	   //foreach ($ratearray as $rate) {
 	   //   if (!empty($rate) && $rate['price'] >= 0) {
@@ -325,7 +325,6 @@ class Webshopapps_Matrixrate_Model_Carrier_Matrixrate
     //    return array('matrixrate'=>$this->getConfigData('name'));
     //}
     public function getAllowedMethods() {
-        Mage::log('getAllowedMethods is called', null, 'debug_shipping.log', null);
         return array(
             'standard' => 'DHL Standard',
             'express' => 'Express 阳光清关'
@@ -345,7 +344,6 @@ class Webshopapps_Matrixrate_Model_Carrier_Matrixrate
         $freightPrice = $this->expresstable[$ceil_weight];
         $rate->setPrice($freightPrice);
         $rate->setCost(0);
-        Mage::log('_getExpressShippingRate is ' . $freightPrice, null, 'debug_shipping.log', null);
         return $rate;
     }
 
