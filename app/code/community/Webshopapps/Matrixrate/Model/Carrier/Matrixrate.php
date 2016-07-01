@@ -158,7 +158,7 @@ class Webshopapps_Matrixrate_Model_Carrier_Matrixrate
                                 $packageValue += $child->getBaseRowTotal();
                             }
                         }
-                    } elseif (!$item->getProduct()->isVirtual() && !$item->getProductType() == 'downloadable') {
+                    } elseif (!$item->getProduct()->isVirtual() && $item->getProductType() != 'downloadable') {
                         $packageValue += $item->getBaseRowTotal();
 
                     }
@@ -261,19 +261,19 @@ class Webshopapps_Matrixrate_Model_Carrier_Matrixrate
      	//$ratearray = $this->getRate($request);
 
      	$freeShipping=false;
-     	
-     	if (is_numeric($this->getConfigData('free_shipping_threshold')) && 
+
+     	if (is_numeric($this->getConfigData('free_shipping_threshold')) &&
 	        $this->getConfigData('free_shipping_threshold')>0 &&
 	        $request->getPackageValue()>$this->getConfigData('free_shipping_threshold')) {
 	         	$freeShipping=true;
 	    }
     	if ($this->getConfigData('allow_free_shipping_promotions') &&
-	        ($request->getFreeShipping() === true || 
+	        ($request->getFreeShipping() === true ||
 	        $request->getPackageQty() == $this->getFreeBoxes()))
         {
          	$freeShipping=true;
         }
-        if ($freeShipping)
+        if ($freeShipping && $request->getDestCountryId() == 'DE')
         {
 		  	$method = Mage::getModel('shipping/rate_result_method');
 			$method->setCarrier('matrixrate');
@@ -282,7 +282,7 @@ class Webshopapps_Matrixrate_Model_Carrier_Matrixrate
 			$method->setPrice('0.00');
 			$method->setMethodTitle($this->getConfigData('free_method_text'));
 			$result->append($method);
-			
+
 			if ($this->getConfigData('show_only_free')) {
 				return $result;
 			}
